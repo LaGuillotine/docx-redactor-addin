@@ -1,0 +1,18 @@
+# binary data
+bin
+obj
+packages
+.binaries
+.fake
+
+# IDEs
+_ReSharper.*/
+.idea
+.vs
+
+# Misc
+*.testsettings
+*.user
+*.suo
+*.fsx.lock
+*.vpp.bak_*
