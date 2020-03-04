@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Security.Cryptography;
 using Microsoft.Office.Interop.Word;
 using Office = Microsoft.Office.Core;
 
@@ -27,9 +26,6 @@ namespace docx_redactor_addin {
 
         public void RedactAction(Office.IRibbonControl control) {
             Range selectedRange = Globals.DocxRedactorAddIn.Application.Selection.Range;
-
-            Debug.WriteLine($"Selected text: {selectedRange.Text}");
-            Debug.WriteLine($"Selected color: {selectedRange.HighlightColorIndex}");
 
             if (selectedRange?.Text == null) return;
             if (selectedRange.Text.Length == 0) return;
