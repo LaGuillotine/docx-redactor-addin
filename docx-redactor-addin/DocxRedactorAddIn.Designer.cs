@@ -15,7 +15,7 @@ namespace docx_redactor_addin {
     /// 
     [Microsoft.VisualStudio.Tools.Applications.Runtime.StartupObjectAttribute(0)]
     [global::System.Security.Permissions.PermissionSetAttribute(global::System.Security.Permissions.SecurityAction.Demand, Name="FullTrust")]
-    public sealed partial class ThisAddIn : Microsoft.Office.Tools.AddInBase {
+    public sealed partial class DocxRedactorAddIn : Microsoft.Office.Tools.AddInBase {
         
         internal Microsoft.Office.Tools.CustomTaskPaneCollection CustomTaskPanes;
         
@@ -30,8 +30,8 @@ namespace docx_redactor_addin {
         /// 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public ThisAddIn(global::Microsoft.Office.Tools.Word.ApplicationFactory factory, global::System.IServiceProvider serviceProvider) : 
-                base(factory, serviceProvider, "AddIn", "ThisAddIn") {
+        public DocxRedactorAddIn(global::Microsoft.Office.Tools.Word.ApplicationFactory factory, global::System.IServiceProvider serviceProvider) : 
+                base(factory, serviceProvider, "AddIn", "DocxRedactorAddIn") {
             Globals.Factory = factory;
         }
         
@@ -42,7 +42,7 @@ namespace docx_redactor_addin {
         protected override void Initialize() {
             base.Initialize();
             this.Application = this.GetHostItem<Microsoft.Office.Interop.Word.Application>(typeof(Microsoft.Office.Interop.Word.Application), "Application");
-            Globals.ThisAddIn = this;
+            Globals.DocxRedactorAddIn = this;
             global::System.Windows.Forms.Application.EnableVisualStyles();
             this.InitializeCachedData();
             this.InitializeControls();
@@ -180,19 +180,19 @@ namespace docx_redactor_addin {
         private Globals() {
         }
         
-        private static ThisAddIn _ThisAddIn;
+        private static DocxRedactorAddIn _docxRedactorAddIn;
         
         private static global::Microsoft.Office.Tools.Word.ApplicationFactory _factory;
         
         private static ThisRibbonCollection _ThisRibbonCollection;
         
-        internal static ThisAddIn ThisAddIn {
+        internal static DocxRedactorAddIn DocxRedactorAddIn {
             get {
-                return _ThisAddIn;
+                return _docxRedactorAddIn;
             }
             set {
-                if ((_ThisAddIn == null)) {
-                    _ThisAddIn = value;
+                if ((_docxRedactorAddIn == null)) {
+                    _docxRedactorAddIn = value;
                 }
                 else {
                     throw new System.NotSupportedException();
