@@ -18,7 +18,6 @@ namespace docx_redactor_addin {
             Redactor redactor = new Redactor(document);
             _redactors[document] = redactor;
 
-            _contextMenu.Redact += redactor.Redact;
             _contextMenu.RedactLikeThis += redactor.RedactLikeRange;
         }
 
@@ -26,7 +25,6 @@ namespace docx_redactor_addin {
             Redactor redactor = _redactors[document];
             _redactors.Remove(document);
 
-            _contextMenu.Redact -= redactor.Redact;
             _contextMenu.RedactLikeThis -= redactor.RedactLikeRange;
         }
 

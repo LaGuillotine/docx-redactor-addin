@@ -3,7 +3,6 @@
   <contextMenus>
     <contextMenu idMso="ContextMenuText">
       <menu id="RedactorMenu" label="Redactor" >
-        <button id="redact" label="Redact this"  onAction="RedactAction" />
         <button id="redactLikeThis" label="Redact everything like this" onAction="RedactAction" />
       </menu>
     </contextMenu>
