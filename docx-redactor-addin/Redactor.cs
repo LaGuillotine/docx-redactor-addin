@@ -168,9 +168,9 @@ namespace docx_redactor_addin {
                 case WdColorIndex.wdRed:
                     return HighlightColorValues.Red;
                 case WdColorIndex.wdTeal:
-                    return HighlightColorValues.Cyan;
-                case WdColorIndex.wdTurquoise:
                     return HighlightColorValues.DarkCyan;
+                case WdColorIndex.wdTurquoise:
+                    return HighlightColorValues.Cyan;
                 case WdColorIndex.wdWhite:
                     return HighlightColorValues.White;
                 case WdColorIndex.wdViolet:
