@@ -2,9 +2,7 @@
 <customUI xmlns="http://schemas.microsoft.com/office/2009/07/customui">
   <contextMenus>
     <contextMenu idMso="ContextMenuText">
-      <menu id="RedactorMenu" label="Redactor" >
-        <button id="redactLikeThis" label="Redact everything like this" onAction="RedactAction" />
-      </menu>
+      <button id="redactLikeThis" label="Redact Highlights" onAction="RedactAction" />
     </contextMenu>
   </contextMenus>
 </customUI>
