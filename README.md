@@ -1,6 +1,6 @@
 # docx-redactor-addin
 
-Word add in version of the cli based [docx-redactor](https://github.com/LaGuillotine/docx-redactor).
+Word add-in version of the cli based [docx-redactor](https://github.com/LaGuillotine/docx-redactor).
 
 ## Installation
 
