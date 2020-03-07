@@ -13,10 +13,6 @@ namespace docx_redactor_addin {
             _document = document;
         }
 
-        public bool KeepHighlight { get; set; } = false;
-
-        public string Replacement { get; set; } = "redacted";
-
         public void RedactLikeRange(Range range) {
             HighlightColorValues color = ColorIndex2Value(range.HighlightColorIndex);
 
@@ -30,6 +26,21 @@ namespace docx_redactor_addin {
             _document.Content.InsertXML(xml);
         }
 
+        private static void PerformReplacement(Run run) {
+            HighlightColorValues? color = run.RunProperties?.Highlight?.Val.Value;
+            run.RunProperties?.Remove();
+
+            foreach (OpenXmlElement child in run.ChildElements) {
+                if (!(child is Text text)) continue;
+                text.Remove();
+            }
+
+            run.AppendChild(new Text(Settings.Replacement));
+
+            if (!Settings.KeepHighlight || color == null) return;
+            run.RunProperties = new RunProperties { Highlight = new Highlight { Val = color.Value } };
+        }
+
         private static IEnumerable<Run> GetRunsWithColor(OpenXmlElement document, HighlightColorValues color) {
             List<Run> runs = new List<Run>();
 
@@ -41,13 +52,6 @@ namespace docx_redactor_addin {
             }
 
             return runs;
-        }
-
-        private void PerformReplacement(Run run) {
-            run.InnerXml = Replacement;
-
-            if (KeepHighlight) return;
-            run.RunProperties?.Highlight?.Remove();
         }
 
         private static IEnumerable<Run> CollectRuns(OpenXmlElement document) {
@@ -110,6 +114,11 @@ namespace docx_redactor_addin {
                 default:
                     return HighlightColorValues.None;
             }
-        } 
+        }
+
+        public static class Settings {
+            public static bool KeepHighlight { get; set; } = true;
+            public static string Replacement { get; set; } = "redacted";
+        }
     }
 }
